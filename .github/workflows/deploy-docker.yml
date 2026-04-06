@@ -32,5 +32,5 @@ jobs:
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
-          app-name: visit-counter-docker-chaimae
+          app-name: ${{ secrets.AZURE_WEBAPP_NAME2 }}
           images: ${{ secrets.ACR_LOGIN_SERVER }}/node-app:latest
