@@ -22,9 +22,8 @@ jobs:
         run: npm install
 
       - name: Create zip package
-        run: zip -r app.zip . -x "node_modules/*"
+        run: zip -r app.zip .
 
-      # 🚀 DEPLOY (Publish Profile method)
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
