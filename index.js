@@ -4,7 +4,7 @@ const path    = require("path");
 
 const app  = express();
 const PORT = process.env.PORT || 8080;  // changé 3000 → 8080 pour Azure
-const FILE = path.join(__dirname, "visits.json");
+const FILE = path.join("/home", "visits.json");
 
 let lock = false;
 
