@@ -1,17 +1,14 @@
 FROM node:18-alpine
 
-# Set working directory
 WORKDIR /app
 
-# Copy package.json and install dependencies
 COPY package*.json ./
+
 RUN npm install
 
-# Copy all project files
 COPY . .
 
-# Expose the port (Azure injects PORT, default 3000)
-EXPOSE 3000
+# Azure utilise le port 8080 pour les conteneurs
+EXPOSE 8080
 
-# Start the app
-CMD ["npm", "start"]
+CMD ["node", "index.js"]
