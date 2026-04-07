@@ -3,7 +3,7 @@ const fs      = require("fs");
 const path    = require("path");
 
 const app  = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;  // changé 3000 → 8080 pour Azure
 const FILE = path.join(__dirname, "visits.json");
 
 let lock = false;
@@ -38,11 +38,9 @@ app.get("/", async (req, res) => {
     let count = readCounter();
     count++;
     writeCounter(count);
-
     const clientIP =
         req.headers["x-forwarded-for"] ||
         req.socket.remoteAddress;
-
     res.send(`
       <h2>Compteur de visites</h2>
       <p><strong>Nombre de visites :</strong> ${count}</p>
@@ -59,6 +57,7 @@ app.get("/", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+// changé : ajout de "0.0.0.0" pour écouter sur toutes les interfaces
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
 });
